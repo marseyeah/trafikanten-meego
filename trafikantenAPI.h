@@ -210,6 +210,8 @@ class TrafikantenAPI : public QObject
 
     Q_PROPERTY(QObject *favorites READ favorites NOTIFY favoritesChanged)
 
+    Q_PROPERTY(QString lastTab READ lastTab WRITE setLastTab NOTIFY lastTabChanged)
+
 public:
     TrafikantenAPI(const QString &lang);
 
@@ -234,6 +236,9 @@ public:
 
     QObject *favorites() { return &m_favorites; }
 
+    QString lastTab() const { return m_lastTab; }
+    void setLastTab(const QString &tab);
+
     static QString serviceURL() { return QString("http://api-test.trafikanten.no"); }
 
     static QScriptEngine *getScriptEngine();
@@ -250,6 +255,7 @@ Q_SIGNALS:
     void nearbySearchChanged();
     void nearbySearchResultChanged();
     void favoritesChanged();
+    void lastTabChanged();
 
 protected Q_SLOTS:
     void processRealTimeSearchResult();
@@ -264,6 +270,8 @@ private:
     void updateRecentSearches();
     void saveRecentSearches();
     void restoreRecentSearches();
+    void saveLastTab();
+    void restoreLastTab();
 
     QString m_language;
 
@@ -282,6 +290,8 @@ private:
     QList<QObject *> m_nearbySearchResult;
 
     FavoritesList m_favorites;
+
+    QString m_lastTab;
 
     static QNetworkAccessManager m_manager;
     QNetworkReply *m_reply;

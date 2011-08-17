@@ -13,23 +13,38 @@ Page {
     TabGroup {
         id: tabGroup
 
-        currentTab: searchTab
+        Component.onCompleted: {
+            var tab = trafikanten.lastTab;
+            if (tab == "nearby")
+                currentTab = nearbyTab;
+            else if (tab == "favorites")
+                currentTab = favoritesTab;
+            else if (tab == "recents")
+                currentTab = recentsTab;
+            else
+                currentTab = searchTab;
+        }
+        onCurrentTabChanged: trafikanten.lastTab = currentTab.name;
 
         PageStack {
             id: searchTab
+            property string name: "search"
             Component.onCompleted: push(Qt.resolvedUrl("SearchView.qml"))
             onVisibleChanged: { if (!visible) pop() }
         }
         PageStack {
             id: nearbyTab
+            property string name: "nearby"
             Component.onCompleted: push(Qt.resolvedUrl("NearbyView.qml"))
             onVisibleChanged: { if (!visible) pop() }
         }
         FavoritesView {
             id: favoritesTab
+            property string name: "favorites"
         }
         PageStack {
             id: recentsTab
+            property string name: "recents"
             Component.onCompleted: push(Qt.resolvedUrl("RecentsView.qml"))
             onVisibleChanged: { if (!visible) pop() }
         }

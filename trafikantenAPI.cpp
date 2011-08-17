@@ -96,6 +96,7 @@ TrafikantenAPI::TrafikantenAPI(const QString &lang)
     m_engine = new QScriptEngine;
 
     restoreRecentSearches();
+    restoreLastTab();
 }
 
 QScriptEngine *TrafikantenAPI::getScriptEngine()
@@ -456,4 +457,29 @@ void TrafikantenAPI::restoreRecentSearches()
     settings.endArray();
 
     emit recentSearchesChanged();
+}
+
+void TrafikantenAPI::setLastTab(const QString &tab)
+{
+    if (m_lastTab == tab)
+        return;
+
+    m_lastTab = tab;
+
+    saveLastTab();
+
+    emit lastTabChanged();
+}
+
+void TrafikantenAPI::saveLastTab()
+{
+    QSettings settings;
+    settings.setValue("lastTab", m_lastTab);
+}
+
+void TrafikantenAPI::restoreLastTab()
+{
+    QSettings settings;
+    m_lastTab = settings.value("lastTab", QString("search")).toString();
+    emit lastTabChanged();
 }
