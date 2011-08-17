@@ -30,6 +30,14 @@ Page {
         DeviModel {
             id: deviationModel
             mStop: root.stopID
+
+            onCountChanged: {
+                if  (count > 0) {
+                    deviDialog.titleText = deviationModel.get(0).title
+                    deviDialog.contentText = deviationModel.get(0).description
+                    deviDialog.bodyText = deviationModel.get(0).body
+                }
+            }
         }
 
         Button {
@@ -39,9 +47,6 @@ Page {
             height: 42; width: height
             iconSource: "image://theme/icon-s-error"
             onClicked: {
-                deviDialog.titleText = deviationModel.get(0).title
-                deviDialog.contentText = deviationModel.get(0).description
-                deviDialog.bodyText = deviationModel.get(0).body
                 deviDialog.open()
             }
             visible: deviationModel.count > 0
