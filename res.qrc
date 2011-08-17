@@ -29,5 +29,6 @@
         <file>qml/trafikanten-fr.qm</file>
         <file>qml/trafikanten-nb.qm</file>
         <file>qml/images/logo_banner.png</file>
+        <file>qml/trafikanten-es.qm</file>
     </qresource>
 </RCC>
