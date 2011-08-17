@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/MainPage.qml</file>
+        <file>qml/DeviModel.qml</file>
+        <file>qml/FavoritesView.qml</file>
+        <file>qml/NearbyListView.qml</file>
+        <file>qml/NearbyView.qml</file>
+        <file>qml/RecentsListView.qml</file>
+        <file>qml/RecentsView.qml</file>
+        <file>qml/SearchView.qml</file>
+        <file>qml/StopSearchBox.qml</file>
+        <file>qml/TimetableView.qml</file>
+        <file>qml/Background.qml</file>
+        <file>qml/Translator.qml</file>
+        <file>qml/utilities.js</file>
+        <file>qml/ViewHeader.qml</file>
+        <file>qml/images/boat_gray.png</file>
+        <file>qml/images/buss_gray.png</file>
+        <file>qml/images/tbane_gray.png</file>
+        <file>qml/images/tog_gray.png</file>
+        <file>qml/images/trykk_gray.png</file>
+        <file>qml/images/toolbar-nearby.png</file>
+        <file>qml/StopListDelegate.qml</file>
+        <file>qml/StopDataDelegate.qml</file>
+        <file>qml/images/icon-common.png</file>
+        <file>qml/StopSectionDelegate.qml</file>
+        <file>qml/StopDeviationDialog.qml</file>
+        <file>qml/trafikanten-fr.qm</file>
+        <file>qml/trafikanten-nb.qm</file>
+        <file>qml/images/logo_banner.png</file>
+    </qresource>
+</RCC>
