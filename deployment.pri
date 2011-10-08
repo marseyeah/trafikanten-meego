@@ -102,7 +102,11 @@ symbian {
     export(desktopfile.files)
     export(desktopfile.path)
     export(target.path)
-    INSTALLS += desktopfile icon target
+    splash.files = trafikanten-splash.png
+    splash.path = /usr/share/Trafikanten
+    export(splash.files)
+    export(splash.path)
+    INSTALLS += desktopfile icon target splash
 }
 
 export (ICON)

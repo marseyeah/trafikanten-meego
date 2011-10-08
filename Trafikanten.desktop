@@ -4,7 +4,7 @@ Version=1.0
 Type=Application
 Terminal=false
 Name=Trafikanten
-Exec=invoker --single-instance --type=d /opt/Trafikanten/bin/Trafikanten
+Exec=invoker --single-instance --splash /usr/share/Trafikanten/trafikanten-splash.png --type=d /opt/Trafikanten/bin/Trafikanten
 Icon=/usr/share/icons/hicolor/64x64/apps/Trafikanten.png
 X-Window-Icon=
 X-HildonDesk-ShowInToolbar=true
