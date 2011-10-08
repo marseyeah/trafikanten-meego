@@ -26,9 +26,11 @@
         <file>qml/images/icon-common.png</file>
         <file>qml/StopSectionDelegate.qml</file>
         <file>qml/StopDeviationDialog.qml</file>
-        <file>qml/trafikanten-fr.qm</file>
-        <file>qml/trafikanten-nb.qm</file>
         <file>qml/images/logo_banner.png</file>
-        <file>qml/trafikanten-es.qm</file>
+        <file>qml/AboutDialog.qml</file>
+        <file>Trafikanten.png</file>
+        <file>translations/trafikanten-es.qm</file>
+        <file>translations/trafikanten-fr.qm</file>
+        <file>translations/trafikanten-nb.qm</file>
     </qresource>
 </RCC>

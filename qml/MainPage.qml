@@ -77,5 +77,31 @@ Page {
                 iconSource: "image://theme/icon-m-toolbar-history"
             }
         }
+
+        Item {
+            width: 80; height: 64
+
+            Image {
+                anchors.centerIn: parent
+                source: menuMouseArea.pressed ? "image://theme/icon-m-toolbar-view-menu-dimmed" : "image://theme/icon-m-toolbar-view-menu";
+            }
+
+            MouseArea {
+                id: menuMouseArea
+                anchors.fill: parent
+                onClicked: { myMenu.open() }
+            }
+        }
+    }
+
+    Menu {
+        id: myMenu
+        MenuLayout {
+            MenuItem {text: qsTr("About"); onClicked: { aboutDialog.open() } }
+        }
+    }
+
+    AboutDialog {
+        id: aboutDialog
     }
 }
