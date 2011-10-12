@@ -76,6 +76,7 @@ Dialog {
 
             Image {
                 source: "qrc:/Trafikanten.png"
+                anchors.verticalCenter: parent.verticalCenter
             }
 
             Column {
@@ -91,8 +92,16 @@ Dialog {
                     color: genericDialog.platformStyle.commonLabelColor
                 }
 
+                Item { width: parent.width; height: 16 }
+
                 Label {
-                    text: "Copyright \u00a9 2011 Yoann Lopes"
+                    text: qsTr("Developed by") + " Yoann Lopes"
+                    font.pixelSize: 22
+                    color: genericDialog.platformStyle.commonLabelColor
+                }
+
+                Label {
+                    text: "<yoann.lopes@gmail.com>"
                     font.pixelSize: 22
                     color: genericDialog.platformStyle.commonLabelColor
                 }
