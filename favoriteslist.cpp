@@ -18,6 +18,9 @@ static bool favoriteLessThan(const RealTimeData *f1, const RealTimeData *f2)
 
     int c3 = QString::compare(f1->destination(), f2->destination(), Qt::CaseInsensitive);
     return c3 < 0;
+
+    int c4 = QString::compare(f1->platformName(), f2->platformName(), Qt::CaseInsensitive);
+    return c4 < 0;
 }
 
 FavoritesList::FavoritesList(QObject *parent) :
@@ -32,11 +35,11 @@ FavoritesList::~FavoritesList()
     qDeleteAll(m_data);
 }
 
-void FavoritesList::addFavorite(int stopID, const QString &stopName, const QString &lineName, const QString &destination, int transportation)
+void FavoritesList::addFavorite(int stopID, const QString &stopName, const QString &lineName, const QString &destination, const QString &platform, int transportation)
 {
-    if (isFavorite(stopID, lineName, destination))
+    if (isFavorite(stopID, lineName, destination, platform))
         return;
-    RealTimeData *d = new RealTimeData(stopID, stopName, lineName, destination, QLatin1String(""), transportation);
+    RealTimeData *d = new RealTimeData(stopID, stopName, lineName, destination, platform, transportation);
     m_data.append(d);
     m_stops.insertMulti(stopID, 0);
     qSort(m_data.begin(), m_data.end(), favoriteLessThan);
@@ -44,12 +47,12 @@ void FavoritesList::addFavorite(int stopID, const QString &stopName, const QStri
     save();
 }
 
-void FavoritesList::removeFavorite(int stopID, const QString &lineName, const QString &destination)
+void FavoritesList::removeFavorite(int stopID, const QString &lineName, const QString &destination, const QString &platform)
 {
     int count = m_data.count();
     for (int i = 0; i < count; ++i) {
         RealTimeData *d = m_data.at(i);
-        if (d->stopId() == stopID && d->lineName() == lineName && d->destination() == destination) {
+        if (d->stopId() == stopID && d->lineName() == lineName && d->destination() == destination && d->platformName() == platform) {
             m_data.removeAt(i);
             m_stops.take(stopID);
             emit dataChanged();
@@ -59,17 +62,17 @@ void FavoritesList::removeFavorite(int stopID, const QString &lineName, const QS
     }
 }
 
-bool FavoritesList::isFavorite(int stopID, const QString &line, const QString &destination)
+bool FavoritesList::isFavorite(int stopID, const QString &line, const QString &destination, const QString &platform)
 {
-    return getFavorite(stopID, line, destination) != 0;
+    return getFavorite(stopID, line, destination, platform) != 0;
 }
 
-RealTimeData *FavoritesList::getFavorite(int stopID, const QString &line, const QString &destination)
+RealTimeData *FavoritesList::getFavorite(int stopID, const QString &line, const QString &destination, const QString &platform)
 {
     int count = m_data.count();
     for (int i = 0; i < count; ++i) {
         RealTimeData *d = m_data.at(i);
-        if (d->stopId() == stopID && d->lineName() == line && d->destination() == destination)
+        if (d->stopId() == stopID && d->lineName() == line && d->destination() == destination && d->platformName() == platform)
             return d;
     }
     return 0;
@@ -79,7 +82,7 @@ void FavoritesList::refreshData()
 {
     // Clear old data
     foreach (RealTimeData *d, m_data)
-        d->clearDepartureTimes();    
+        d->clearDepartureTimes();
 
     // Request new data
     QList<int> ids = m_stops.uniqueKeys();
@@ -116,12 +119,13 @@ void FavoritesList::processReply()
         QVariantMap vm = list.at(i).toMap();
         QString name = vm.value("PublishedLineName").toString().trimmed();
         QString dest = vm.value("DestinationName").toString().trimmed();
+        QString platform = vm.value("DeparturePlatformName").toString().trimmed();
         bool mon = vm.value("Monitored").toBool();
         QString refTime = vm.value("RecordedAtTime").toString();
         refTime = refTime.mid(6, refTime.indexOf("+") - 6);
         QString time = vm.value("ExpectedDepartureTime").toString();
         time = time.mid(6, time.indexOf("+") - 6);
-        RealTimeData *data = getFavorite(id, name, dest);
+        RealTimeData *data = getFavorite(id, name, dest, platform);
         if (data)
             data->addDepartureTime(new RealTimeDepartureData(mon, refTime, time));
     }
@@ -145,6 +149,7 @@ void FavoritesList::save() const
         settings.setValue("stopName", d->stopName());
         settings.setValue("lineName", d->lineName());
         settings.setValue("destination", d->destination());
+        settings.setValue("platform", d->platformName());
         settings.setValue("transportation", d->transportation());
     }
     settings.endArray();
@@ -163,9 +168,10 @@ void FavoritesList::load()
         QString stopName = settings.value("stopName").toString();
         QString lineName = settings.value("lineName").toString();
         QString destination = settings.value("destination").toString();
+        QString platform = settings.value("platform").toString();
         int transportation = settings.value("transportation").toInt();
 
-        RealTimeData *d = new RealTimeData(stopId, stopName, lineName, destination, QLatin1String(""), transportation);
+        RealTimeData *d = new RealTimeData(stopId, stopName, lineName, destination, platform, transportation);
         m_data.append(d);
         m_stops.insertMulti(stopId, 0);
     }

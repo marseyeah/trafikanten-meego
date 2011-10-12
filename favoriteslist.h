@@ -32,9 +32,9 @@ signals:
     void waitingForDataChanged();
 
 public Q_SLOTS:
-    void addFavorite(int stopID, const QString &stopName, const QString &lineName, const QString &destination, int transportation);
-    void removeFavorite(int stopID, const QString &lineName, const QString &destination);
-    bool isFavorite(int stopID, const QString &line, const QString &destination);
+    void addFavorite(int stopID, const QString &stopName, const QString &lineName, const QString &destination, const QString &platform, int transportation);
+    void removeFavorite(int stopID, const QString &lineName, const QString &destination, const QString &platform);
+    bool isFavorite(int stopID, const QString &line, const QString &destination, const QString &platform);
 
     void refreshData();
 
@@ -42,7 +42,7 @@ private Q_SLOTS:
     void processReply();
 
 private:
-    RealTimeData *getFavorite(int stopID, const QString &line, const QString &destination);
+    RealTimeData *getFavorite(int stopID, const QString &line, const QString &destination, const QString &platform);
     void save() const;
     void load();
 

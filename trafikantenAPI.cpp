@@ -303,11 +303,11 @@ void TrafikantenAPI::processRealTimeDataResult()
         QString time = vm.value("ExpectedDepartureTime").toString();
         time = time.mid(6, time.indexOf("+") - 6);
 
-        RealTimeData *data = dynamic_cast<RealTimeData *>(m_realTimeDataResult.value(name + dest));
+        RealTimeData *data = dynamic_cast<RealTimeData *>(m_realTimeDataResult.value(name + dest + platform));
         if (!data) {
             Stop *stop = Stop::getCachedStop(m_realTimeDataQuery);
             data = new RealTimeData(m_realTimeDataQuery, "", name, dest, platform, stop->lineType(name));
-            m_realTimeDataResult.insert(name + dest, data);
+            m_realTimeDataResult.insert(name + dest + platform, data);
         }
         data->addDepartureTime(new RealTimeDepartureData(mon, refTime, time));
     }

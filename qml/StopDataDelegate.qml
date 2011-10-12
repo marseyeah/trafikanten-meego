@@ -46,7 +46,7 @@ Column {
             }
         }
 
-        property bool isFavorite: trafikanten.favorites.isFavorite(modelData.stopId, modelData.lineName, modelData.destination)
+        property bool isFavorite: trafikanten.favorites.isFavorite(modelData.stopId, modelData.lineName, modelData.destination, modelData.platformName)
 
         Column {
             anchors.top: parent.top
@@ -72,9 +72,9 @@ Column {
                         height: parent.height * 1.7
                         onClicked: {
                             if (rect.isFavorite)
-                                trafikanten.favorites.removeFavorite(modelData.stopId, modelData.lineName, modelData.destination);
+                                trafikanten.favorites.removeFavorite(modelData.stopId, modelData.lineName, modelData.destination, modelData.platformName);
                             else
-                                trafikanten.favorites.addFavorite(modelData.stopId, root.stopName, modelData.lineName, modelData.destination, modelData.transportation);
+                                trafikanten.favorites.addFavorite(modelData.stopId, root.stopName, modelData.lineName, modelData.destination, modelData.platformName, modelData.transportation);
                             rect.isFavorite = !rect.isFavorite
                         }
                     }
@@ -119,7 +119,7 @@ Column {
                         color: "#4c71c8"
                         verticalAlignment: Text.AlignTop
                         font.pixelSize: 22
-                        text: (modelData.monitored ? "" : "~") + (rawText == "0" ? qsTr("now") : rawText)
+                        text: (modelData.monitored ? "" : qsTr("~")) + (rawText == "0" ? qsTr("now") : rawText)
                         property string rawText: Utilities.formatTrafDate(modelData.referenceTime, modelData.departureTime)
                     }
                 }

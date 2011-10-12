@@ -7,8 +7,8 @@
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {
-    QApplication::setOrganizationName("Nokia");
-    QApplication::setOrganizationDomain("qt.nokia.com");
+    QApplication::setOrganizationName("TrafikantenAS");
+    QApplication::setOrganizationDomain("trafikanten.no");
     QApplication::setApplicationName("Trafikanten");
 
     QApplication *app = MDeclarativeCache::qApplication(argc, argv);
