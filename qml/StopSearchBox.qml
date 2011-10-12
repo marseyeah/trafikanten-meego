@@ -46,6 +46,7 @@ Item {
         anchors.topMargin: 16
         anchors.top: parent.top
         inputMethodHints: Qt.ImhNoPredictiveText
+        Keys.onReturnPressed: listview.focus = true
 
         Image {
             id: editIcon
