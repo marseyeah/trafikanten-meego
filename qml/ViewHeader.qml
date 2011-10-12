@@ -9,7 +9,7 @@ Rectangle {
 
     width: parent ? parent.width : 0
     height: 64
-    color: "#1A85DE"
+    color: "#4c71c8"
     anchors.top: parent.top
     anchors.horizontalCenter: parent.horizontalCenter
 
@@ -19,6 +19,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: 74
         anchors.verticalCenter: parent.verticalCenter
+        spacing: -4
 
         Label {
             anchors.left: parent.left
@@ -34,7 +35,7 @@ Rectangle {
             anchors.left: text.length > 0 ? parent.left : undefined
             anchors.right: text.length > 0 ? parent.right : undefined
             verticalAlignment: Text.AlignVCenter
-            color: "#383838"
+            color: "#282828"
             font.pixelSize: 20
             elide: Text.ElideRight
         }

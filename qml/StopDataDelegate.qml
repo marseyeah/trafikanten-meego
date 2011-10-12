@@ -116,7 +116,7 @@ Column {
                     Label {
                         height: timeview.height
                         font.bold: true
-                        color: "#1A85DE"
+                        color: "#4c71c8"
                         verticalAlignment: Text.AlignTop
                         font.pixelSize: 22
                         text: (modelData.monitored ? "" : "~") + (rawText == "0" ? qsTr("now") : rawText)
