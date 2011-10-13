@@ -104,7 +104,7 @@ Page {
     Menu {
         id: myMenu
         MenuLayout {
-            MenuItem {text: qsTr("About"); onClicked: { aboutDialog.open() } }
+            MenuItem {text: qsTr("About") + " Trafikanten"; onClicked: { aboutDialog.open() } }
         }
     }
 

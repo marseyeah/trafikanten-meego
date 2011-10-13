@@ -16,7 +16,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QTranslator appTranslator;
     QString language = QLocale::system().name().left(2);
-    bool res = appTranslator.load(QLatin1String(":/qml/trafikanten-") + language);
+    bool res = appTranslator.load(QLatin1String(":/translations/trafikanten-") + language);
     if (res)
         app->installTranslator(&appTranslator);
     else
