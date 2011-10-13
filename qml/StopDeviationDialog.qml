@@ -27,6 +27,14 @@ Sheet {
         anchors.fill: parent
         anchors.margins: 16
 
+        Connections {
+            target: myDialog
+            onStatusChanged: {
+                if (myDialog.status == DialogStatus.Opening)
+                    contentView.positionViewAtBeginning();
+            }
+        }
+
         model: 1
         delegate: Column {
             id: contentColumn
