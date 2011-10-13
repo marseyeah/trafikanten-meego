@@ -1,7 +1,7 @@
 Source: trafikanten-yoannlopes
 Section: user/other
 Priority: optional
-Maintainer: Yoann Lopes <yoann.lopes@nokia.com>
+Maintainer: Yoann Lopes <yoann.lopes@gmail.com>
 Build-Depends: debhelper (>= 5), libqt4-dev
 Standards-Version: 3.7.3
 Homepage:

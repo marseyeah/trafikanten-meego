@@ -1,12 +1,19 @@
 trafikanten-yoannlopes (1.2.0) unstable; urgency=low
 
+  * Added splashscreen.
+  * Added deviation messages for lines.
+
+ -- Yoann Lopes <yoann.lopes@gmail.com>  Thu, 13 Oct 2011 14:57:18 +0200
+
+trafikanten-yoannlopes (1.1.0) unstable; urgency=low
+
   * The application now remembers the last used tab.
   * Added Spanish translation.
 
- -- Yoann Lopes <yoann.lopes@nokia.com>  Wed, 17 Aug 2011 17:03:22 +0200
+ -- Yoann Lopes <yoann.lopes@gmail.com>  Wed, 17 Aug 2011 17:03:22 +0200
 
-trafikanten-yoannlopes (1.2.0) unstable; urgency=low
+trafikanten-yoannlopes (1.0.0) unstable; urgency=low
 
   * Initial Release.
 
- -- Yoann Lopes <yoann.lopes@nokia.com>  Sat, 23 Jul 2011 17:03:22 +0200
+ -- Yoann Lopes <yoann.lopes@gmail.com>  Sat, 23 Jul 2011 17:03:22 +0200
