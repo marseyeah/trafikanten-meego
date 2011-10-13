@@ -1,17 +1,15 @@
 import QtQuick 1.1
 import com.meego 1.0
 
-Rectangle {
+Image {
     property alias text: title.text
     property alias secondaryText: title2.text
     property alias textAnchors: title.anchors
     property alias secondaryTextAnchors: title2.anchors
 
-    width: parent ? parent.width : 0
-    height: 64
-    color: "#4c71c8"
     anchors.top: parent.top
     anchors.horizontalCenter: parent.horizontalCenter
+    source: "image://theme/color9-meegotouch-view-header-fixed"
 
     Column {
         anchors.left: parent.left
@@ -35,7 +33,7 @@ Rectangle {
             anchors.left: text.length > 0 ? parent.left : undefined
             anchors.right: text.length > 0 ? parent.right : undefined
             verticalAlignment: Text.AlignVCenter
-            color: "#282828"
+            color: "#D8D8D8"
             font.pixelSize: 20
             elide: Text.ElideRight
         }

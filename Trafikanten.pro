@@ -41,7 +41,6 @@ OTHER_FILES += \
     qtc_packaging/debian_harmattan/compat \
     qtc_packaging/debian_harmattan/changelog \
     qml/utilities.js \
-    qml/Translator.qml \
     qml/TimetableView.qml \
     qml/StopSearchBox.qml \
     qml/SearchView.qml \
@@ -59,7 +58,8 @@ OTHER_FILES += \
     qml/StopDataDelegate.qml \
     qml/StopSectionDelegate.qml \
     qml/StopDeviationDialog.qml \
-    qml/AboutDialog.qml
+    qml/AboutDialog.qml \
+    qml/Separator.qml
 
 RESOURCES += \
     res.qrc
@@ -96,4 +96,6 @@ HEADERS += \
     utmref.h \
     trafikantenAPI.h \
     favoriteslist.h
+
+
 

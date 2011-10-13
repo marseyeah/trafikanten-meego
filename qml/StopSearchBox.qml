@@ -46,6 +46,9 @@ Item {
         anchors.topMargin: 16
         anchors.top: parent.top
         inputMethodHints: Qt.ImhNoPredictiveText
+        platformStyle: TextFieldStyle {
+            backgroundSelected: "image://theme/color9-meegotouch-textedit-background-selected"
+        }
         Keys.onReturnPressed: listview.focus = true
 
         Image {
@@ -90,17 +93,10 @@ Item {
         }
     }
 
-    Rectangle {
+    Separator {
         id: separator
         anchors.top: input.bottom
         anchors.topMargin: 16
         width:  parent.width
-        height: 2
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "#BABABA" }
-            GradientStop { position: 0.49; color: "#BABABA" }
-            GradientStop { position: 0.5; color: "#FFFFFF" }
-            GradientStop { position: 1.0; color: "#FFFFFF" }
-        }
     }
 }

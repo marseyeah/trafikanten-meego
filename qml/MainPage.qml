@@ -3,11 +3,18 @@ import com.meego 1.0
 
 Page {
     id: mainPage
+
+    property alias deviationDialog: deviDialog
+
     tools: commonTools
     orientationLock: PageOrientation.LockPortrait
 
     Background {
         anchors.fill: parent
+    }
+
+    StopDeviationDialog {
+        id: deviDialog
     }
 
     TabGroup {

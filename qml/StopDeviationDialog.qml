@@ -3,18 +3,13 @@ import com.meego 1.0
 
 Dialog {
     id: myDialog
-    property alias titleText: titleTrans.query
-    property alias contentText: contentTrans.query
-    property alias bodyText: bodyTrans.query
+    property string titleText
+    property string contentText
+    property string bodyText
 
-    Translator {
-        id: titleTrans
-    }
-    Translator {
-        id: contentTrans
-    }
-    Translator {
-        id: bodyTrans
+    platformStyle: DialogStyle {
+        leftMargin: 44
+        rightMargin: 44
     }
 
     title: Column {
@@ -24,12 +19,12 @@ Dialog {
 
         Label {
             id: titleField
-            text: titleTrans.result
             color: "white"
             font.bold: true
             anchors.left: parent.left
             anchors.right: parent.right
             wrapMode: Text.Wrap
+            text: myDialog.titleText
         }
 
         Rectangle {
@@ -40,47 +35,63 @@ Dialog {
         }
     }
 
-    content: Column {
+    content: ListView {
         anchors.left: parent.left
         anchors.right: parent.right
+        height: 600
+        clip: true
 
-        Item {
-            height: 16
-            width: parent.width
-        }
-        Label {
-            id: contentField
-            text: contentTrans.result
-            color: "white"
+        model: 1
+        delegate: Column {
+            id: contentColumn
             anchors.left: parent.left
             anchors.right: parent.right
-            wrapMode: Text.Wrap
-            textFormat: Text.RichText
-            font.pixelSize: 20
-        }
-        Item {
-            height: 16
-            width: parent.width
-        }
-        Label {
-            id: bodyField
-            text: bodyTrans.result
-            color: "white"
-            anchors.left: text.length > 0 ? parent.left : undefined
-            anchors.right: text.length > 0 ? parent.right : undefined
-            wrapMode: Text.Wrap
-            textFormat: Text.RichText
-            font.pixelSize: 20
-        }
-        Item {
-            height: bodyField.text.length > 0 ? 16 : 0
-            width: parent.width
+
+            Item {
+                height: 16
+                width: parent.width
+            }
+            Label {
+                id: contentField
+                color: "white"
+                anchors.left: parent.left
+                anchors.right: parent.right
+                wrapMode: Text.Wrap
+                textFormat: Text.RichText
+                font.pixelSize: 20
+                text: myDialog.contentText
+            }
+            Item {
+                height: 16
+                width: parent.width
+            }
+            Label {
+                id: bodyField
+                color: "white"
+                anchors.left: text.length > 0 ? parent.left : undefined
+                anchors.right: text.length > 0 ? parent.right : undefined
+                wrapMode: Text.Wrap
+                textFormat: Text.RichText
+                font.pixelSize: 20
+                text: myDialog.bodyText
+            }
+            Item {
+                height: bodyField.text.length > 0 ? 16 : 0
+                width: parent.width
+            }
         }
     }
 
     buttons: ButtonRow {
-        style: ButtonStyle { }
+        style: ButtonStyle {
+            pressedBackground: "image://theme/color9-meegotouch-button-inverted-background-pressed" + (position ? "-" + position : "")
+            disabledBackground: "image://theme/color9-meegotouch-button-inverted-background-disabled" + (position ? "-" + position : "")
+            checkedBackground: "image://theme/color9-meegotouch-button-inverted-background-selected" + (position ? "-" + position : "")
+            checkedDisabledBackground: "image://theme/color9-meegotouch-button-inverted-background-disabled-selected" + (position ? "-" + position : "")
+        }
         anchors.horizontalCenter: parent.horizontalCenter
-        Button {text: qsTr("Close"); onClicked: myDialog.accept()}
+        Button {
+            text: qsTr("Close"); onClicked: myDialog.accept()
+        }
     }
 }

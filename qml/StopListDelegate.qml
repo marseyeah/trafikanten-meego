@@ -9,21 +9,14 @@ Rectangle {
     color: "#E0E1E2"
     visible: modelData.name.length > 0
 
-    Rectangle {
+    Separator {
         id: separator
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.leftMargin: 16
         anchors.right: parent.right
         anchors.rightMargin: 16
-        height: 2
         visible: index !== 0
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "#BABABA" }
-            GradientStop { position: 0.49; color: "#BABABA" }
-            GradientStop { position: 0.5; color: "#FFFFFF" }
-            GradientStop { position: 1.0; color: "#FFFFFF" }
-        }
     }
 
     Item {

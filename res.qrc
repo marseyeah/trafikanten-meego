@@ -12,7 +12,6 @@
         <file>qml/StopSearchBox.qml</file>
         <file>qml/TimetableView.qml</file>
         <file>qml/Background.qml</file>
-        <file>qml/Translator.qml</file>
         <file>qml/utilities.js</file>
         <file>qml/ViewHeader.qml</file>
         <file>qml/images/boat_gray.png</file>
@@ -32,5 +31,6 @@
         <file>translations/trafikanten-es.qm</file>
         <file>translations/trafikanten-fr.qm</file>
         <file>translations/trafikanten-nb.qm</file>
+        <file>qml/Separator.qml</file>
     </qresource>
 </RCC>
