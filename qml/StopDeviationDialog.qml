@@ -1,45 +1,31 @@
 import QtQuick 1.1
 import com.meego 1.0
 
-Dialog {
+Sheet {
     id: myDialog
     property string titleText
     property string contentText
     property string bodyText
 
-    platformStyle: DialogStyle {
-        leftMargin: 44
-        rightMargin: 44
-    }
-
-    title: Column {
-        spacing: 16
-        anchors.left: parent.left
+    buttons: SheetButton {
+        id: acceptButton
+        objectName: "acceptButton"
         anchors.right: parent.right
-
-        Label {
-            id: titleField
-            color: "white"
-            font.bold: true
-            anchors.left: parent.left
-            anchors.right: parent.right
-            wrapMode: Text.Wrap
-            text: myDialog.titleText
+        anchors.rightMargin: 15
+        anchors.verticalCenter: parent.verticalCenter
+        platformStyle: SheetButtonAccentStyle {
+            background: "image://theme/color9-meegotouch-sheet-button-accent-inverted-background"
+            pressedBackground: "image://theme/color9-meegotouch-sheet-button-accent-inverted-background-pressed"
+            disabledBackground: "image://theme/color9-meegotouch-sheet-button-accent-inverted-background-disabled"
         }
-
-        Rectangle {
-            height: 2
-            anchors.left: parent.left
-            anchors.right: parent.right
-            color: "white"
-        }
+        text: qsTr("Close")
+        onClicked: myDialog.close()
     }
 
     content: ListView {
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 600
-        clip: true
+        id: contentView
+        anchors.fill: parent
+        anchors.margins: 16
 
         model: 1
         delegate: Column {
@@ -47,13 +33,20 @@ Dialog {
             anchors.left: parent.left
             anchors.right: parent.right
 
+            Label {
+                id: titleField
+                font.bold: true
+                anchors.left: parent.left
+                anchors.right: parent.right
+                wrapMode: Text.Wrap
+                text: myDialog.titleText
+            }
             Item {
                 height: 16
                 width: parent.width
             }
             Label {
                 id: contentField
-                color: "white"
                 anchors.left: parent.left
                 anchors.right: parent.right
                 wrapMode: Text.Wrap
@@ -67,7 +60,6 @@ Dialog {
             }
             Label {
                 id: bodyField
-                color: "white"
                 anchors.left: text.length > 0 ? parent.left : undefined
                 anchors.right: text.length > 0 ? parent.right : undefined
                 wrapMode: Text.Wrap
@@ -75,23 +67,12 @@ Dialog {
                 font.pixelSize: 20
                 text: myDialog.bodyText
             }
-            Item {
-                height: bodyField.text.length > 0 ? 16 : 0
-                width: parent.width
-            }
         }
-    }
 
-    buttons: ButtonRow {
-        style: ButtonStyle {
-            pressedBackground: "image://theme/color9-meegotouch-button-inverted-background-pressed" + (position ? "-" + position : "")
-            disabledBackground: "image://theme/color9-meegotouch-button-inverted-background-disabled" + (position ? "-" + position : "")
-            checkedBackground: "image://theme/color9-meegotouch-button-inverted-background-selected" + (position ? "-" + position : "")
-            checkedDisabledBackground: "image://theme/color9-meegotouch-button-inverted-background-disabled-selected" + (position ? "-" + position : "")
-        }
-        anchors.horizontalCenter: parent.horizontalCenter
-        Button {
-            text: qsTr("Close"); onClicked: myDialog.accept()
+        ScrollDecorator {
+            anchors.rightMargin: -16
+            anchors.topMargin: -16
+            flickableItem: contentView
         }
     }
 }
